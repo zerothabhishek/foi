@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  question: 
+  answer_choice: 
+  respondent: 
+  value: MyText
+
+two:
+  question: 
+  answer_choice: 
+  respondent: 
+  value: MyText

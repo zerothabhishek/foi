@@ -1,0 +1,41 @@
+<% url = @question.new_record? ? survey_questions_path(@survey) : survey_question_url(@survey, @question) %>
+<%= form_for @question, :url => url do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :q_text %><br />
+    <%= f.text_area :q_text, :size => "50x4" %>
+  </div>
+
+  <div class="field" id="ans_type_block">
+    <b>Answer type </b><br />
+	<% ANSWER_TYPES.each_pair do |atype_id, a_type| %>
+		<div class="ans_type">
+		<%= f.radio_button :ans_type, atype_id %> 
+		<%= f.label "ans_type_#{a_type[:id]}", raw(a_type[:desc]) %> <br/>
+		</div>
+	<% end %>
+  </div>
+
+  <div id="answer_choices_block">	
+  </div>
+			
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<br/>
+<br/>
+<br/>
+<br/>

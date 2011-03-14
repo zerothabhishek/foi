@@ -1,0 +1,38 @@
+<h1>Editing question</h1>
+<%= form_for @question, :url => survey_question_url(@survey, @question) do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :q_text %><br />
+    <%= f.text_area :q_text, :size => "50x4" %>
+  </div>
+
+  <div class="field" id="ans_type_block">
+    <b>Answer type :</b>
+  	<%= ANSWER_TYPES[@question.ans_type.to_s][:desc] %>
+    <br/> <small>(answer type can't be edited. write a new question instead)</small>
+  </div>
+
+  <div id="answer_choices_block">	
+	<% @question.answer_choices.each do |ac| %>
+		<%= render :partial => "answer_choices/edit_answer_choice_#{@question.ans_type}", :locals => {:answer_choice => ac} %>
+	<% end %>
+	<div class='addon_link'><%= link_to '+', '/answer_choices/new?ans_type=2&addon=1', :remote=>true %></div>	
+  </div>
+			
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= link_to 'Show', survey_question_path(@survey, @question) %> |
+<%= link_to 'Back', survey_questions_path(@survey) %>

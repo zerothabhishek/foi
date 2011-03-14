@@ -1,0 +1,33 @@
+<% if @addon %>
+	<% partial = "new_answer_choice_#{@ans_type_requested}" %>
+	var html = "<%= escape_javascript(render :partial => partial) %>";
+	$("#answer_choices_block").find(".addon_link").before(html);
+	
+<% else %>
+
+<% case @ans_type_requested %>	
+	<% when "1" %>
+	$("#answer_choices_block").hide("slow").html('');	
+	
+	<% when "2" %>
+	var html1 = "<%= escape_javascript(render :partial => 'new_answer_choice_2', :locals => {:no =>'1'}) %>"
+	var html2 = "<%= escape_javascript(render :partial => 'new_answer_choice_2', :locals => {:no =>'2'}) %>"
+	var html3 = "<%= escape_javascript(render :partial => 'new_answer_choice_2', :locals => {:no =>'3'}) %>"
+	var html4 = "<%= escape_javascript(render :partial => 'new_answer_choice_2', :locals => {:no =>'4'}) %>"
+	var more_link = "<div class='addon_link'><%= escape_javascript(link_to '+', '/answer_choices/new?ans_type=2&addon=1', :remote=>true) %></div>"
+	
+	var html = html1 + html2 + html3 + html4 + more_link ;
+	$("#answer_choices_block").hide("slow").show("slow").html(html);	
+
+	<% when "3" %>
+	var html1 = "<%= escape_javascript(render :partial => 'new_answer_choice_3', :locals => {:no =>'1'}) %>"
+	var html2 = "<%= escape_javascript(render :partial => 'new_answer_choice_3', :locals => {:no =>'2'}) %>"
+	var html3 = "<%= escape_javascript(render :partial => 'new_answer_choice_3', :locals => {:no =>'3'}) %>"
+	var html4 = "<%= escape_javascript(render :partial => 'new_answer_choice_3', :locals => {:no =>'4'}) %>"
+	var more_link = "<div class='addon_link'><%= escape_javascript(link_to '+', '/answer_choices/new?ans_type=3&addon=1', :remote=>true) %></div>"
+	
+	var html = html1 + html2 + html3 + html4 + more_link ;
+	$("#answer_choices_block").hide("slow").show("slow").html(html);
+	
+<% end %>
+<% end %>

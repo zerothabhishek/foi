@@ -1,0 +1,6 @@
+<div class="ans_choice">
+  <%= label_tag :choice_text, "choice" %>
+  <%= text_field_tag "edit_answer_choice[#{answer_choice.id}][choice_text]", answer_choice.choice_text  %>
+  <%= link_to_function "x", "remove_ans_choice(event, true); " %>
+</div>
+	

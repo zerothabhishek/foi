@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Question text:</b>
+  <%= @question.q_text %>
+</p>
+
+<p>
+  <b>Answer type:</b>
+  <%= ANSWER_TYPES[@question.ans_type.to_s][:desc] %>
+</p>
+
+<p>
+</p>
+  <b>Answer options:</b>
+  <ul>
+  <% @question.answer_choices.each do |ac| %>
+  	<li><%= ac.choice_text %></li>
+  <% end %>
+  </ul>
+<p>
+  <b>Survey:</b>
+  <%= link_to @question.survey.name, survey_path(@survey)  %>
+</p>
+
+
+<%= link_to 'Edit', edit_survey_question_path(@survey, @question) %> |
+<%= link_to 'Back', survey_questions_path(@survey) %>

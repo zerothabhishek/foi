@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Choice text:</b>
+  <%= @answer_choice.choice_text %>
+</p>
+
+<p>
+  <b>Question:</b>
+  <%= @answer_choice.question %>
+</p>
+
+
+<%= link_to 'Edit', edit_answer_choice_path(@answer_choice) %> |
+<%= link_to 'Back', answer_choices_path %>

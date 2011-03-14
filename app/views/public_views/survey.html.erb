@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= @survey.name %>
+</p>
+
+<p>
+  This survey has <%= @survey.questions.count %> questions.
+  <%= link_to "start", survey_question_path(@survey, @survey.questions.first) %>
+</p>
+
+<p>
+  Survey creator : <%= @survey.user.email %>
+</p>	

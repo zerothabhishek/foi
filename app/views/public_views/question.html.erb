@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= @question.q_text %>
+</p>
+
+
+<%= form_for(:answer, :url=>survey_answers_url(@survey, @answer)) do |f| %>
+
+  <%= f.hidden_field :question_id %>
+
+  <% case @question.ans_type.to_s %>
+  <% when "1" %>
+
+	<%= f.text_area :value %>	
+
+  <% when "2" %>
+	<ul><% @question.answer_choices.each do |ac| %>
+    	<li><%= f.radio_button :answer_choice_id, ac.id %>
+		<%= f.label :answer_choice_id, ac.choice_text %> </li>
+    <% end %></ul>
+
+  <% when "3" %>
+  	<ul><% @question.answer_choices.each do |ac| %>
+  		<li><%= check_box_tag "answer[choices_selected][]", ac.id %>
+		<%= label_tag "answer[choices_selected][]", ac.choice_text %></li>
+  	<% end %></ul>
+  <% end %>
+
+<p>
+	<%= f.submit 'done' %>
+</p>		
+<% end %>
+
+<p>
+  <%= link_to "survey home", survey_path(@survey)  %>
+</p>
